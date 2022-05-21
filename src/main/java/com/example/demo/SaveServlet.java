@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/saveServlet")
-public class SaveServlet extends HttpServlet {
+public class  SaveServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,12 +22,16 @@ public class SaveServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
+        String age = request.getParameter("age");
+        String speciality = request.getParameter("speciality");
 
         Employee employee = new Employee();
 
         employee.setName(name);
         employee.setEmail(email);
         employee.setCountry(country);
+        employee.setAge(age);
+        employee.setSpeciality(speciality);
 
         //out.println(employee.toString());
         //out.println(EmployeeRepository.getConnection());

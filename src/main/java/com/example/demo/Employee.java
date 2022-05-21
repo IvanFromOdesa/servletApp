@@ -6,6 +6,16 @@ public class Employee {
     private String name;
     private String country;
     private String email;
+    private String age;
+    private String speciality;
+
+    public void setAge(String age) {this.age = age;}
+
+    public String getAge() {return age;}
+
+    public void setSpeciality(String speciality) {this.speciality = speciality;}
+
+    public String getSpeciality() {return speciality;}
 
     public int getId() {
         return id;
