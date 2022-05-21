@@ -6,6 +6,21 @@ public class Employee {
     private String name;
     private String country;
     private String email;
+    private String experience;
+    private String salary;
+    private String working_hours;
+
+    public void setExperience(String experience) {this.experience = experience;}
+
+    public String getExperience() {return experience;}
+
+    public void setSalary(String salary) {this.salary = salary;}
+
+    public String getSalary() {return salary;}
+
+    public void setWorking_hours(String working_hours) {this.working_hours = working_hours;}
+
+    public String getWorking_hours() {return working_hours;}
 
     public int getId() {
         return id;
