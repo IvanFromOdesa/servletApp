@@ -61,6 +61,9 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", email='" + email + '\'' +
+                ", experience='" + experience + '\'' +
+                ", salary='" + salary + '\'' +
+                ", working_hours='" +working_hours +'\'' +
                 '}';
     }
 }
