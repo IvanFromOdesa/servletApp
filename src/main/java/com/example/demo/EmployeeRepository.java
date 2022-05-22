@@ -100,8 +100,7 @@ public class EmployeeRepository {
         return status;
     }
 
-    public static Employee getEmployeeById(int id) {
-
+    public static Employee getEmployeeById(int id)  {
         Employee employee = new Employee();
 
         try {
@@ -155,5 +154,30 @@ public class EmployeeRepository {
             e.printStackTrace();
         }
         return listEmployees;
+    }
+
+    public static void checkDB(int id) throws InvalidIDException{
+        boolean flag = false;
+        List<Integer> list = new ArrayList<>();
+        try {
+            Connection connection = EmployeeRepository.getConnection();
+            PreparedStatement ps = connection.prepareStatement("select * from employee1");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(rs.getInt(1));
+            }
+            connection.close();
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        for(int index: list) {
+            if(index==id){
+                flag=true;
+                break;
+            }
+        }
+        if(!flag){
+            throw new InvalidIDException("No such id " + "(" + id +")" + " exists in the data base!");
+        }
     }
 }
