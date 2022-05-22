@@ -51,7 +51,8 @@ public class PutServlet extends HttpServlet {
                 out.print("Specified ID is not found!" + "(Exception: " + e + ")");
                 e.printStackTrace();
             }
-
-        out.close();
+            finally {
+                out.close();
+            }
     }
 }
