@@ -21,6 +21,7 @@ public class RequestLoggingFilter implements Filter {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        this.context.log("RequestLoggingFilter started processing!");
         HttpServletRequest req = (HttpServletRequest) request;
         Enumeration<String> params = req.getParameterNames();
         while (params.hasMoreElements()) {
@@ -36,6 +37,7 @@ public class RequestLoggingFilter implements Filter {
             }
         }
         // pass the request along the filter chain
+        this.context.log("RequestLoggingFilter passed!");
         chain.doFilter(request, response);
     }
 

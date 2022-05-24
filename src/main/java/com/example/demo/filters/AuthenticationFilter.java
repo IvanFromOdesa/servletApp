@@ -20,6 +20,7 @@ public class AuthenticationFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
+        this.context.log("AuthenticationFilter started processing!");
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
@@ -29,11 +30,19 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        if (session == null && !(uri.endsWith("demo/saveServlet") || uri.endsWith("demo/viewByIDServlet") || uri.endsWith("demo/viewServlet") || uri.endsWith("demo/putServlet") || uri.endsWith("demo/deleteServlet"))) {
+        PrintWriter out = res.getWriter();
+        String password = req.getParameter("password");
+        Boolean access = true;
+        if(!password.equals("mypassword")){
+            access=false;
+            out.print("Invalid password!");
+        }
+
+        if (session == null && (!access || !(uri.endsWith("demo/saveServlet") || uri.endsWith("demo/viewByIDServlet") || uri.endsWith("demo/viewServlet") || uri.endsWith("demo/putServlet") || uri.endsWith("demo/deleteServlet")))) {
             this.context.log("<<< Unauthorized access request");
-            PrintWriter out = res.getWriter();
             out.println("No access!!!");
         } else {
+            this.context.log("AuthenticationFilter passed!");
             chain.doFilter(request, response);
         }
     }
